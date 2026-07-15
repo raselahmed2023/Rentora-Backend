@@ -492,14 +492,16 @@ app.use(
 
 /* Start server */
 
-async function startServer() {
-  await client.connect();
+await client.connect();
 
-  console.log("MongoDB connected");
+console.log("MongoDB connected");
 
+if (!process.env.VERCEL) {
   app.listen(port, () => {
-    console.log(`Server running at ${authUrl}`);
+    console.log(
+      `Server running at http://localhost:${port}`
+    );
   });
 }
 
-startServer();
+export default app;
